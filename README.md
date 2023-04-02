@@ -10,5 +10,4 @@ To run the project using parcel, use the following command to open it in the ser
 
 ```
 $ parcel parcel ./src/index.html
-
 ```
