@@ -16,9 +16,29 @@ const orbit=new OrbitControls(camera,renderer.domElement);
 const axesHelper=new THREE.AxesHelper(5)
 scene.add(axesHelper);
 camera.position.set(2,2,20);
-/*Stars Background*/
+/*Stars Background
 const textureLoader=new THREE.TextureLoader();
-scene.background=textureLoader.load(stars);
+scene.background=textureLoader.load(stars1);
+const cubetextureLoader=new THREE.CubeTextureLoader();
+scene.background=cubetextureLoader.load([
+    stars,
+    stars,
+    stars,
+    stars,
+    stars,
+    stars
+]);*/
+const textureLoader = new THREE.TextureLoader();
+const texture = textureLoader.load(stars);
+
+const geometry = new THREE.SphereGeometry(50);
+const material = new THREE.MeshBasicMaterial({
+  map: texture,
+  side: THREE.BackSide // make sure texture is applied to the inside of the sphere
+});
+const mesh = new THREE.Mesh(geometry, material);
+
+scene.add(mesh);
 /* */
 /*SUN*/
 const sunGeometry =new THREE.SphereGeometry(4);
@@ -29,6 +49,7 @@ scene.add(sun);
 orbit.update();
 renderer.render(scene,camera);
 function animate(time){
+    sun.rotation.y+=0.01;
     renderer.render(scene,camera);
 }
 renderer.setAnimationLoop(animate);

@@ -2934,8 +2934,26 @@ const orbit = new (0, _orbitControls.OrbitControls)(camera, renderer.domElement)
 const axesHelper = new _three.AxesHelper(5);
 scene.add(axesHelper);
 camera.position.set(2, 2, 20);
-/*Stars Background*/ const textureLoader = new _three.TextureLoader();
-scene.background = textureLoader.load((0, _backgroundJpgDefault.default));
+/*Stars Background
+const textureLoader=new THREE.TextureLoader();
+scene.background=textureLoader.load(stars1);
+const cubetextureLoader=new THREE.CubeTextureLoader();
+scene.background=cubetextureLoader.load([
+    stars,
+    stars,
+    stars,
+    stars,
+    stars,
+    stars
+]);*/ const textureLoader = new _three.TextureLoader();
+const texture = textureLoader.load((0, _backgroundJpgDefault.default));
+const geometry = new _three.SphereGeometry(50);
+const material = new _three.MeshBasicMaterial({
+    map: texture,
+    side: _three.BackSide // make sure texture is applied to the inside of the sphere
+});
+const mesh = new _three.Mesh(geometry, material);
+scene.add(mesh);
 /* */ /*SUN*/ const sunGeometry = new _three.SphereGeometry(4);
 const sunMaterial = new _three.MeshBasicMaterial({
     map: textureLoader.load((0, _sunJpgDefault.default))
@@ -2945,11 +2963,12 @@ scene.add(sun);
 /**/ orbit.update();
 renderer.render(scene, camera);
 function animate(time) {
+    sun.rotation.y += 0.01;
     renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
 
-},{"three":"ktPTu","three/examples/jsm/controls/OrbitControls":"7mqRv","../Material/Background.jpg":"gvwrI","@parcel/transformer-js/src/esmodule-helpers.js":"3GpeP","../Material/sun.jpg":"j847R"}],"ktPTu":[function(require,module,exports) {
+},{"three":"ktPTu","three/examples/jsm/controls/OrbitControls":"7mqRv","../Material/Background.jpg":"gvwrI","../Material/sun.jpg":"j847R","@parcel/transformer-js/src/esmodule-helpers.js":"3GpeP"}],"ktPTu":[function(require,module,exports) {
 /**
  * @license
  * Copyright 2010-2023 Three.js Authors
