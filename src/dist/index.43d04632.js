@@ -2923,8 +2923,24 @@ var _three = require("three");
 var _orbitControls = require("three/examples/jsm/controls/OrbitControls");
 var _backgroundJpg = require("../Material/Background.jpg");
 var _backgroundJpgDefault = parcelHelpers.interopDefault(_backgroundJpg);
+var _mercuryJpg = require("../Material/mercury.jpg");
+var _mercuryJpgDefault = parcelHelpers.interopDefault(_mercuryJpg);
 var _sunJpg = require("../Material/sun.jpg");
 var _sunJpgDefault = parcelHelpers.interopDefault(_sunJpg);
+var _earthJpg = require("../Material/earth.jpg");
+var _earthJpgDefault = parcelHelpers.interopDefault(_earthJpg);
+var _venusJpg = require("../Material/venus.jpg");
+var _venusJpgDefault = parcelHelpers.interopDefault(_venusJpg);
+var _marsJpg = require("../Material/mars.jpg");
+var _marsJpgDefault = parcelHelpers.interopDefault(_marsJpg);
+var _jupiterJpg = require("../Material/jupiter.jpg");
+var _jupiterJpgDefault = parcelHelpers.interopDefault(_jupiterJpg);
+var _saturnJpeg = require("../Material/saturn.jpeg");
+var _saturnJpegDefault = parcelHelpers.interopDefault(_saturnJpeg);
+var _uranusJpg = require("../Material/uranus.jpg");
+var _uranusJpgDefault = parcelHelpers.interopDefault(_uranusJpg);
+var _neptuneJpg = require("../Material/neptune.jpg");
+var _neptuneJpgDefault = parcelHelpers.interopDefault(_neptuneJpg);
 const renderer = new _three.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
@@ -2933,42 +2949,113 @@ const camera = new _three.PerspectiveCamera(75, window.innerWidth / window.inner
 const orbit = new (0, _orbitControls.OrbitControls)(camera, renderer.domElement);
 const axesHelper = new _three.AxesHelper(5);
 scene.add(axesHelper);
-camera.position.set(2, 2, 20);
-/*Stars Background
-const textureLoader=new THREE.TextureLoader();
-scene.background=textureLoader.load(stars1);
-const cubetextureLoader=new THREE.CubeTextureLoader();
-scene.background=cubetextureLoader.load([
-    stars,
-    stars,
-    stars,
-    stars,
-    stars,
-    stars
-]);*/ const textureLoader = new _three.TextureLoader();
+camera.position.set(2, 2, 100);
+/*Add sun light*/ const pointLight = new _three.PointLight(0xFFFFFF, 2, 300);
+scene.add(pointLight);
+/* */ /*Stars Background*/ const textureLoader = new _three.TextureLoader();
 const texture = textureLoader.load((0, _backgroundJpgDefault.default));
-const geometry = new _three.SphereGeometry(50);
+const geometry = new _three.SphereGeometry(200, 2000, 2000);
 const material = new _three.MeshBasicMaterial({
     map: texture,
     side: _three.BackSide // make sure texture is applied to the inside of the sphere
 });
 const mesh = new _three.Mesh(geometry, material);
 scene.add(mesh);
-/* */ /*SUN*/ const sunGeometry = new _three.SphereGeometry(4);
+/* */ /*SUN*/ const sunGeometry = new _three.SphereGeometry(20, 2000, 2000);
 const sunMaterial = new _three.MeshBasicMaterial({
     map: textureLoader.load((0, _sunJpgDefault.default))
 });
 const sun = new _three.Mesh(sunGeometry, sunMaterial);
 scene.add(sun);
-/**/ orbit.update();
+/**/ /*Mercury*/ const MercuryGeometry = new _three.SphereGeometry(3, 2000, 2000);
+const MercuryMaterial = new _three.MeshStandardMaterial({
+    map: textureLoader.load((0, _mercuryJpgDefault.default))
+});
+const Mercury = new _three.Mesh(MercuryGeometry, MercuryMaterial);
+const MercuryObj = new _three.Object3D();
+Mercury.position.x = 30;
+scene.add(MercuryObj);
+MercuryObj.add(Mercury);
+/* */ /*Venus*/ const VenusGeometry = new _three.SphereGeometry(6, 2000, 2000);
+const VenusMaterial = new _three.MeshStandardMaterial({
+    map: textureLoader.load((0, _venusJpgDefault.default))
+});
+const Venus = new _three.Mesh(VenusGeometry, VenusMaterial);
+const VenusObj = new _three.Object3D();
+Venus.position.x = 50;
+scene.add(VenusObj);
+VenusObj.add(Venus);
+/* */ /*Earth*/ const EarthGeometry = new _three.SphereGeometry(7, 2000, 2000);
+const EarthMaterial = new _three.MeshStandardMaterial({
+    map: textureLoader.load((0, _earthJpgDefault.default))
+});
+const Earth = new _three.Mesh(EarthGeometry, EarthMaterial);
+const EarthObj = new _three.Object3D();
+Earth.position.x = 60;
+scene.add(EarthObj);
+EarthObj.add(Earth);
+/* */ /*Mars*/ const MarsGeometry = new _three.SphereGeometry(5, 2000, 2000);
+const MarsMaterial = new _three.MeshStandardMaterial({
+    map: textureLoader.load((0, _marsJpgDefault.default))
+});
+const Mars = new _three.Mesh(MarsGeometry, MarsMaterial);
+const MarsObj = new _three.Object3D();
+Mars.position.x = 70;
+scene.add(MarsObj);
+MarsObj.add(Mars);
+/* */ /*Jupiter*/ const JupiterGeometry = new _three.SphereGeometry(12, 2000, 2000);
+const JupiterMaterial = new _three.MeshStandardMaterial({
+    map: textureLoader.load((0, _jupiterJpgDefault.default))
+});
+const Jupiter = new _three.Mesh(JupiterGeometry, JupiterMaterial);
+const JupiterObj = new _three.Object3D();
+Jupiter.position.x = 80;
+scene.add(JupiterObj);
+JupiterObj.add(Jupiter);
+/* */ /*Saturn*/ const SaturnGeometry = new _three.SphereGeometry(10, 2000, 2000);
+const SaturnMaterial = new _three.MeshStandardMaterial({
+    map: textureLoader.load((0, _saturnJpegDefault.default))
+});
+const Saturn = new _three.Mesh(SaturnGeometry, SaturnMaterial);
+const SaturnObj = new _three.Object3D();
+Saturn.position.x = 90;
+scene.add(JupiterObj);
+SaturnObj.add(Saturn);
+/* */ /*Uranus*/ const UranusGeometry = new _three.SphereGeometry(7, 2000, 2000);
+const UranusMaterial = new _three.MeshStandardMaterial({
+    map: textureLoader.load((0, _uranusJpgDefault.default))
+});
+const Uranus = new _three.Mesh(UranusGeometry, UranusMaterial);
+const UranusObj = new _three.Object3D();
+Uranus.position.x = 100;
+scene.add(UranusObj);
+UranusObj.add(Uranus);
+/* */ /*Neptune*/ const NeptuneGeometry = new _three.SphereGeometry(7, 2000, 2000);
+const NeptuneMaterial = new _three.MeshStandardMaterial({
+    map: textureLoader.load((0, _neptuneJpgDefault.default))
+});
+const Neptune = new _three.Mesh(NeptuneGeometry, NeptuneMaterial);
+const NeptuneObj = new _three.Object3D();
+Neptune.position.x = 110;
+scene.add(NeptuneObj);
+NeptuneObj.add(Neptune);
+/* */ orbit.update();
 renderer.render(scene, camera);
 function animate(time) {
     sun.rotation.y += 0.01;
+    MercuryObj.rotation.y += 0.1;
+    VenusObj.rotation.y += 0.08;
+    EarthObj.rotation.y += 0.07;
+    MarsObj.rotation.y += 0.06;
+    JupiterObj.rotation.y += 0.05;
+    SaturnObj.rotation.y += 0.04;
+    UranusObj.rotation.y += 0.03;
+    NeptuneObj.rotation.y += 0.02;
     renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
 
-},{"three":"ktPTu","three/examples/jsm/controls/OrbitControls":"7mqRv","../Material/Background.jpg":"gvwrI","../Material/sun.jpg":"j847R","@parcel/transformer-js/src/esmodule-helpers.js":"3GpeP"}],"ktPTu":[function(require,module,exports) {
+},{"three":"ktPTu","three/examples/jsm/controls/OrbitControls":"7mqRv","../Material/Background.jpg":"gvwrI","../Material/mercury.jpg":"fcHYv","../Material/sun.jpg":"j847R","../Material/earth.jpg":"5R2dk","../Material/venus.jpg":"2X3JH","../Material/mars.jpg":"bThZm","../Material/jupiter.jpg":"cQSMR","../Material/saturn.jpeg":"7XrRd","../Material/uranus.jpg":"7l30Y","../Material/neptune.jpg":"hfcNp","@parcel/transformer-js/src/esmodule-helpers.js":"3GpeP"}],"ktPTu":[function(require,module,exports) {
 /**
  * @license
  * Copyright 2010-2023 Three.js Authors
@@ -33436,9 +33523,33 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"j847R":[function(require,module,exports) {
+},{}],"fcHYv":[function(require,module,exports) {
+module.exports = require("b6700c514e0651e").getBundleURL("c94yX") + "mercury.273ef62f.jpg" + "?" + Date.now();
+
+},{"b6700c514e0651e":"kCVaW"}],"j847R":[function(require,module,exports) {
 module.exports = require("8075a5edb969856").getBundleURL("c94yX") + "sun.e69cb67a.jpg" + "?" + Date.now();
 
-},{"8075a5edb969856":"kCVaW"}]},["foh7L","i47yA","ka7ho"], "ka7ho", "parcelRequire94c2")
+},{"8075a5edb969856":"kCVaW"}],"5R2dk":[function(require,module,exports) {
+module.exports = require("ee0c9b9e74a44d07").getBundleURL("c94yX") + "earth.98a23754.jpg" + "?" + Date.now();
+
+},{"ee0c9b9e74a44d07":"kCVaW"}],"2X3JH":[function(require,module,exports) {
+module.exports = require("7c09cddf1e18994b").getBundleURL("c94yX") + "venus.c143fc80.jpg" + "?" + Date.now();
+
+},{"7c09cddf1e18994b":"kCVaW"}],"bThZm":[function(require,module,exports) {
+module.exports = require("b5181d1396de8db3").getBundleURL("c94yX") + "mars.9c27a09a.jpg" + "?" + Date.now();
+
+},{"b5181d1396de8db3":"kCVaW"}],"cQSMR":[function(require,module,exports) {
+module.exports = require("4abdf4732f295c90").getBundleURL("c94yX") + "jupiter.43648604.jpg" + "?" + Date.now();
+
+},{"4abdf4732f295c90":"kCVaW"}],"7XrRd":[function(require,module,exports) {
+module.exports = require("7cc5b896894b63fb").getBundleURL("c94yX") + "saturn.e2928882.jpeg" + "?" + Date.now();
+
+},{"7cc5b896894b63fb":"kCVaW"}],"7l30Y":[function(require,module,exports) {
+module.exports = require("e083bc0b884a6fb3").getBundleURL("c94yX") + "uranus.9b4f8db1.jpg" + "?" + Date.now();
+
+},{"e083bc0b884a6fb3":"kCVaW"}],"hfcNp":[function(require,module,exports) {
+module.exports = require("aff0f6643695c998").getBundleURL("c94yX") + "neptune.3f0f1ebc.jpg" + "?" + Date.now();
+
+},{"aff0f6643695c998":"kCVaW"}]},["foh7L","i47yA","ka7ho"], "ka7ho", "parcelRequire94c2")
 
 //# sourceMappingURL=index.43d04632.js.map
