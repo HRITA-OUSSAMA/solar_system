@@ -9,5 +9,5 @@ $ npm install three
 To run the project using parcel, use the following command to open it in the server
 
 ```
-$ parcel parcel ./src/index.html
+$ parcel ./src/index.html
 ```
