@@ -1,7 +1,7 @@
 # solar_system
 ## Installation
 To run this project, open a terminal and install it locally using npm:
-```shell
+```python
 npm install parcel -g   
 npm install three  
 ```
